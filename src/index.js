@@ -1,14 +1,3 @@
-console.log("first")
-
-// let map = L.map('map').setView([51.505, -0.09], 13);
-
-// let osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//   maxZoom: 19,
-//   attribution: '&copy; OpenStreetMap'
-// }).addTo(map);
-
-
-
 fetch(
   "https://geo.stat.fi/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typeName=tilastointialueet:kunta4500k&outputFormat=json&srsName=EPSG:4326"
 )
@@ -27,9 +16,9 @@ fetch(
     });
 
     const geoJSONLayer = L.geoJSON(geoJSONData, {
-      weight: 2,
-    }).addTo(map);
-  
-    map.fitBounds(geoJSONLayer.getBounds());
+    weight: 2,
+  }).addTo(map);
+
+  map.fitBounds(geoJSONLayer.getBounds());
 
   }
