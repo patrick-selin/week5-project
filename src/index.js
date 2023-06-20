@@ -3,22 +3,34 @@ fetch(
 )
   .then((response) => response.json())
   .then((data) => {
-    // Use the GeoJSON data here
-    createMap(data); // Call the createMap function passing the GeoJSON data
+  
+    createMap(data);
+    console.log(data)
   })
   .catch((error) => {
     console.error("Error fetching GeoJSON data:", error);
+    
   });
+
 
   function createMap(geoJSONData) {
     const map = L.map("map", {
       minZoom: -3,
     });
 
+
     const geoJSONLayer = L.geoJSON(geoJSONData, {
     weight: 2,
+    onEachFeature: function (features, layer) {
+      layer.bindTooltip(features.properties.name, { permanent: false, sticky: true });
+    },
   }).addTo(map);
 
   map.fitBounds(geoJSONLayer.getBounds());
 
+  
   }
+
+
+
+  
